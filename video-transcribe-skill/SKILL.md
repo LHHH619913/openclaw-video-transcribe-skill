@@ -46,11 +46,11 @@ for f in cache_files: print(f, os.path.getsize(f)/1024/1024, "MB")
 **模型优先级（降序）：**
 | 模型 | 大小 | 说明 |
 |------|------|------|
-| large-v3 | ~2880 MB | 准确率最高，下载慢 |
-| **medium** | ~1530 MB | **优先用这个**（通常已下载） |
+| **large-v3** | ~2880 MB | **优先使用**（已本地安装：`~/.cache/whisper/large-v3.pt`，2026-03-22） |
+| medium | ~1530 MB | fallback |
 | base | ~139 MB | 速度最快，准确率较低 |
 
-> ⚠️ 如果 large 模型缓存 < 100MB，说明下载不完整（真实需要 2.88GB），不要使用。fallback 到 medium。
+> ⚠️ 如果 large-v3 缓存 < 100MB，说明下载不完整，使用 medium。
 
 ### Step 3：执行转录（Python 脚本）
 
@@ -60,7 +60,7 @@ for f in cache_files: print(f, os.path.getsize(f)/1024/1024, "MB")
 import whisper
 from docx import Document
 
-model = whisper.load_model("medium")   # 优先 medium
+model = whisper.load_model("large-v3")  # 优先 large-v3（已本地安装）
 result = model.transcribe("<视频完整路径>", language="zh")
 text = result["text"]
 
