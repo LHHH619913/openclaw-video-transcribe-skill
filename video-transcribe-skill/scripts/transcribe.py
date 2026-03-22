@@ -11,7 +11,7 @@ VIDEO_PATH = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\Administrator\Desk
 OUT_PATH   = sys.argv[2] if len(sys.argv) > 2 else r"C:\Users\Administrator\Desktop\video_transcript_raw.docx"
 
 print(f"Loading model (medium)...", flush=True)
-model = whisper.load_model("medium")
+model = whisper.load_model("large-v3")
 print("Model loaded", flush=True)
 
 print(f"Transcribing: {VIDEO_PATH}", flush=True)
